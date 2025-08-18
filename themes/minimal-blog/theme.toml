@@ -1,0 +1,12 @@
+name = "Minimal Blog"
+license = "MIT"
+licenselink = "https://github.com/stepanovic/stepanovic_xyz/blob/main/LICENSE"
+description = "A minimal, lightweight Hugo theme for personal blogs"
+homepage = "https://stepanovic.xyz"
+tags = ["blog", "minimal", "personal", "responsive"]
+features = ["responsive", "tooltips", "lightweight"]
+min_version = "0.41.0"
+
+[author]
+  name = "Mike Stepanovic"
+  homepage = "https://stepanovic.xyz"

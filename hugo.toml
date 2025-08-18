@@ -1,0 +1,27 @@
+baseURL = 'https://stepanovic.xyz'
+languageCode = 'en-us'
+title = 'Mike Stepanovic'
+theme = 'minimal-blog'
+
+[params]
+  author = 'Mike Stepanovic'
+  description = 'Personal blog and thoughts'
+  
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true  # Allow HTML in markdown for custom tooltips
+
+[menu]
+  [[menu.main]]
+    name = 'Home'
+    url = '/'
+    weight = 10
+  [[menu.main]]
+    name = 'Posts'
+    url = '/posts/'
+    weight = 20
+  [[menu.main]]
+    name = 'About'
+    url = '/about/'
+    weight = 30
