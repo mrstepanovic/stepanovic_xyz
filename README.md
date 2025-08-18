@@ -29,7 +29,7 @@ The site automatically deploys to GitHub Pages when you push to the main branch.
 
 ## Custom Domain Setup
 
-To use your custom domain (stepanovic.xyz):
+To use your custom domain:
 
 1. Go to your GitHub repository settings
 2. Navigate to Pages section
@@ -49,8 +49,8 @@ To use your custom domain (stepanovic.xyz):
 brew install hugo
 
 # Clone and run
-git clone https://github.com/yourusername/stepanovic_xyz.git
-cd stepanovic_xyz
+git clone <repo>
+cd <repo>
 hugo server -D
 
 # Create new post
