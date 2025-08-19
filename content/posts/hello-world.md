@@ -6,7 +6,7 @@ pinned: true
 description: "Welcome post introducing my Hugo blog with custom features and styling"
 ---
 
-Welcome to my Hugo blog! This is my first post.
+Welcome to my Hugo blog! This is my first post. I'm excited to share my thoughts and experiences using [Hugo](https://gohugo.io/), an amazing static site generator.
 
 ## Features
 
