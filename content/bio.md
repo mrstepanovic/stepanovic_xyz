@@ -1,14 +1,6 @@
 ---
-title: "Bio"
+title: ""
 ---
-
-Hi! I'm Mike Stepanovic. 
-
-This is my personal blog where I explore ideas, share experiences, and write about technology and life. I believe in clear thinking and simple communication.
-
-When I'm not writing, you can find me working on various projects or exploring new concepts that catch my curiosity.
-
-You can use this  feature for additional context in your posts.
 
 ### The Site
 
