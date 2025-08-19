@@ -57,6 +57,28 @@
             padding-bottom: 1rem;
         }
         
+        .header-content {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: normal;
+            line-height: 1.2;
+        }
+        
+        .header .site-title {
+            text-decoration: none;
+            color: #000;
+        }
+        
+        .header .site-title:hover {
+            text-decoration: underline;
+        }
+        
         .nav {
             display: flex;
             align-items: center;
@@ -71,11 +93,6 @@
         
         .nav a:hover {
             text-decoration: underline;
-        }
-        
-        .nav .site-title {
-            font-weight: bold;
-            font-size: 18px;
         }
         
         /* Minimalist post list styling */
@@ -122,6 +139,16 @@
         
         .content {
             margin-bottom: 3rem;
+        }
+        
+        .intro {
+            margin-bottom: 3rem;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        
+        .intro p {
+            margin: 0;
         }
         
         .bio {
@@ -286,12 +313,18 @@
                 font-size: 15px;
             }
             
-            .nav {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
                 gap: 1rem;
             }
             
-            .nav .site-title {
-                font-size: 16px;
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav {
+                gap: 1rem;
             }
             
             .post-date {
@@ -314,11 +347,13 @@
 </head>
 <body>
     <header class="header">
-        <nav class="nav">
-            <a href="{{ .Site.BaseURL }}" class="site-title">stepanovic.xyz</a>
-            <a href="/posts/">posts</a>
-            <a href="/about/">about</a>
-        </nav>
+        <div class="header-content">
+            <h1><a href="{{ .Site.BaseURL }}" class="site-title">stepanovic.xyz</a></h1>
+            <nav class="nav">
+                <a href="/about/">about</a>
+                <a href="/posts/">posts</a>
+            </nav>
+        </div>
     </header>
     
     <main class="content">

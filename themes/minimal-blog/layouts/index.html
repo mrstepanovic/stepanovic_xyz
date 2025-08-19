@@ -1,7 +1,12 @@
 {{ define "main" }}
 <div class="home">
+    <!-- Descriptive body -->
+    <div class="intro">
+        <p>{{ .Site.Params.description }}</p>
+    </div>
+
     <!-- Minimalist post list -->
-    {{ $posts := .Site.RegularPages }}
+    {{ $posts := where .Site.RegularPages "Type" "posts" }}
     {{ if $posts }}
         <ul class="post-list-minimal">
             {{ range $posts }}
