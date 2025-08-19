@@ -1,43 +1,25 @@
 {{ define "main" }}
 <div class="home">
-    <!-- Bio Section -->
-    <div class="bio">
-        <p>{{ .Site.Params.description }}</p>
-    </div>
-
-    <!-- Social Links Section -->
-    <div class="social-links">
-        <h2>Find me</h2>
-        <ul>
-            <li>• Twitter: <em><a href="https://twitter.com/{{ .Site.Params.twitter | default "yourusername" }}">@{{ .Site.Params.twitter | default "yourusername" }}</a></em></li>
-            <li>• Email: <em><a href="mailto:{{ .Site.Params.email | default "your@email.com" }}">{{ .Site.Params.email | default "your@email.com" }}</a></em></li>
-            <li>• <a href="/posts/">Posts</a></li>
-            <li>• <a href="/about/">About</a></li>
-        </ul>
-    </div>
-
-    <!-- Recent Posts Section -->
-    {{ $recentPosts := first 5 .Site.RegularPages }}
-    {{ if $recentPosts }}
-        <div class="posts-section">
-            <h2>Recent Posts</h2>
-            <ul class="post-list">
-                {{ range $recentPosts }}
-                    <li>
-                        <h3>• <a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-                        {{ if .Summary }}
-                            <div class="post-summary">{{ .Summary }}</div>
+    <!-- Minimalist post list -->
+    {{ $posts := .Site.RegularPages }}
+    {{ if $posts }}
+        <ul class="post-list-minimal">
+            {{ range $posts }}
+                <li>
+                    <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+                    <span>
+                        <a href="{{ .Permalink }}" class="post-title-link">{{ .Title }}</a>
+                        {{ if .Params.description }}
+                            <span class="post-description">{{ .Params.description }}</span>
+                        {{ else if .Summary }}
+                            <span class="post-description">{{ truncate 100 .Summary }}</span>
                         {{ end }}
-                    </li>
-                {{ end }}
-            </ul>
-            <p><a href="/posts/">Browse all posts →</a></p>
-        </div>
+                    </span>
+                </li>
+            {{ end }}
+        </ul>
     {{ else }}
-        <div class="posts-section">
-            <h2>Recent Posts</h2>
-            <p>No posts yet. Check back soon!</p>
-        </div>
+        <p>No posts yet.</p>
     {{ end }}
 </div>
 {{ end }}

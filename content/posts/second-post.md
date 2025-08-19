@@ -2,6 +2,7 @@
 title: "My Second Post"
 date: 2025-01-10T12:00:00-08:00
 draft: false
+description: "Demonstrating how regular posts appear in the chronological listing"
 ---
 
 This is my second blog post. It will appear in the regular posts section since it's not pinned.

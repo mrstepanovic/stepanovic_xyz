@@ -3,6 +3,7 @@ title: "Hello World"
 date: 2025-01-10T10:00:00-08:00
 draft: false
 pinned: true
+description: "Welcome post introducing my Hugo blog with custom features and styling"
 ---
 
 Welcome to my Hugo blog! This is my first post.

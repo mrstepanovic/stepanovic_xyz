@@ -53,19 +53,14 @@
         
         .header {
             margin-bottom: 3rem;
-        }
-        
-        .header h1 {
-            margin: 0 0 1rem 0;
-            font-size: 2.5rem;
-            font-weight: normal;
-            color: #000;
-            line-height: 1.2;
-            font-family: 'Reforma2018', Georgia, 'Times New Roman', Times, serif;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 1rem;
         }
         
         .nav {
-            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
         }
         
         .nav a {
@@ -78,10 +73,51 @@
             text-decoration: underline;
         }
         
-        .nav a:not(:last-child)::after {
-            content: " • ";
+        .nav .site-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        /* Minimalist post list styling */
+        .post-list-minimal {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+        
+        .post-list-minimal li {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+        
+        .post-date {
+            min-width: 100px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #666;
+            margin-right: 2rem;
+        }
+        
+        .post-title-link {
+            text-decoration: none;
             color: #000;
-            margin: 0 0.5rem;
+            margin-right: 0.5rem;
+        }
+        
+        .post-title-link:hover {
+            text-decoration: underline;
+        }
+        
+        .post-description {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .post-description::before {
+            content: "• ";
+            margin-right: 0.3rem;
         }
         
         .content {
@@ -250,23 +286,38 @@
                 font-size: 15px;
             }
             
-            .header h1 {
-                font-size: 2rem;
+            .nav {
+                gap: 1rem;
             }
             
-            .nav a:not(:last-child)::after {
-                margin: 0 0.3rem;
+            .nav .site-title {
+                font-size: 16px;
+            }
+            
+            .post-date {
+                min-width: 80px;
+                margin-right: 1rem;
+            }
+            
+            .post-list-minimal li {
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 1.2rem;
+            }
+            
+            .post-date {
+                margin-bottom: 0.2rem;
+                margin-right: 0;
             }
         }
     </style>
 </head>
 <body>
     <header class="header">
-        <h1><a href="{{ .Site.BaseURL }}" style="text-decoration: none; color: inherit;">{{ .Site.Title }}</a></h1>
         <nav class="nav">
-            {{ range .Site.Menus.main }}
-                <a href="{{ .URL }}">{{ .Name }}</a>
-            {{ end }}
+            <a href="{{ .Site.BaseURL }}" class="site-title">stepanovic.xyz</a>
+            <a href="/posts/">posts</a>
+            <a href="/about/">about</a>
         </nav>
     </header>
     
