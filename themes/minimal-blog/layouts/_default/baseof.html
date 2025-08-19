@@ -475,9 +475,9 @@
             background: linear-gradient(270deg, 
                 #8b5cf6, #d946ef, #22c55e, #3b82f6, #8b5cf6);
             background-size: 400% 400%;
-            color: #fff;
-            padding: 1px 3px;
-            border-radius: 3px;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             animation: colorWheel 15s ease-in-out infinite;
         }
         
@@ -493,7 +493,13 @@
         }
         
         .single-post a[href^="http"]:not(.footnotes a):hover::after {
-            color: #fff;
+            background: linear-gradient(270deg, 
+                #8b5cf6, #d946ef, #22c55e, #3b82f6, #8b5cf6);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: colorWheel 15s ease-in-out infinite;
         }
         
         /* Footnotes section */
@@ -532,9 +538,9 @@
             background: linear-gradient(270deg, 
                 #8b5cf6, #d946ef, #22c55e, #3b82f6, #8b5cf6);
             background-size: 400% 400%;
-            color: #fff;
-            padding: 1px 3px;
-            border-radius: 3px;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
             animation: colorWheel 15s ease-in-out infinite;
         }
         
@@ -635,7 +641,13 @@
                         line-height: 0;
                     }
                     .content a[href^="http"]:not(.footnotes a):hover::after {
-                        color: #fff;
+                        background: linear-gradient(270deg, 
+                            #8b5cf6, #d946ef, #22c55e, #3b82f6, #8b5cf6);
+                        background-size: 400% 400%;
+                        -webkit-background-clip: text;
+                        background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        animation: colorWheel 15s ease-in-out infinite;
                     }
                 `;
                 document.head.appendChild(style);
