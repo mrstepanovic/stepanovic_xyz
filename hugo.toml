@@ -5,7 +5,9 @@ theme = 'minimal-blog'
 
 [params]
   author = 'Mike Stepanovic'
-  description = 'Personal blog and thoughts'
+  description = 'Welcome to my personal blog! I write about technology, ideas, and experiences that interest me.'
+  email = 'mike@stepanovic.xyz'
+  twitter = 'mikestepanovic'
   
 [markup]
   [markup.goldmark]
@@ -14,14 +16,10 @@ theme = 'minimal-blog'
 
 [menu]
   [[menu.main]]
-    name = 'Home'
-    url = '/'
+    name = 'posts'
+    url = '/posts/'
     weight = 10
   [[menu.main]]
-    name = 'Posts'
-    url = '/posts/'
-    weight = 20
-  [[menu.main]]
-    name = 'About'
+    name = 'about'
     url = '/about/'
-    weight = 30
+    weight = 20

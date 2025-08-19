@@ -4,53 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categories - Mike Stepanovic</title>
-    <meta name="description" content="Personal blog and thoughts">
+    <meta name="description" content="Welcome to my personal blog! I write about technology, ideas, and experiences that interest me.">
     
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            line-height: 1.7;
+            max-width: 600px;
             margin: 0 auto;
-            padding: 20px;
-            color: #333;
+            padding: 40px 20px;
+            color: #000;
             background-color: #fff;
+            font-size: 16px;
         }
         
         .header {
-            border-bottom: 1px solid #eee;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
+            margin-bottom: 3rem;
         }
         
         .header h1 {
-            margin: 0;
-            color: #2c3e50;
+            margin: 0 0 1rem 0;
+            font-size: 2.5rem;
+            font-weight: normal;
+            color: #000;
+            line-height: 1.2;
         }
         
         .nav {
-            margin-top: 1rem;
+            margin-bottom: 2rem;
         }
         
         .nav a {
-            margin-right: 1rem;
             text-decoration: none;
-            color: #3498db;
-            font-weight: 500;
+            color: #000;
+            font-size: 16px;
         }
         
         .nav a:hover {
             text-decoration: underline;
         }
         
+        .nav a:not(:last-child)::after {
+            content: " • ";
+            color: #000;
+            margin: 0 0.5rem;
+        }
+        
         .content {
+            margin-bottom: 3rem;
+        }
+        
+        .bio {
             margin-bottom: 2rem;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+        
+        .social-links {
+            margin-bottom: 3rem;
+        }
+        
+        .social-links h2 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            margin-bottom: 1rem;
+            color: #000;
+        }
+        
+        .social-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .social-links li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .social-links a {
+            color: #000;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            text-decoration: underline;
         }
         
         .post-meta {
             color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+            font-size: 14px;
+            margin-bottom: 0.5rem;
+            font-style: italic;
+        }
+        
+        .posts-section h2 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            margin: 2rem 0 1rem 0;
+            color: #000;
         }
         
         .post-list {
@@ -59,30 +110,52 @@
         }
         
         .post-list li {
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 2rem;
         }
         
         .post-list h3 {
-            margin: 0 0 0.5rem 0;
+            margin: 0 0 0.3rem 0;
+            font-size: 1.1rem;
+            font-weight: normal;
+            line-height: 1.4;
         }
         
         .post-list a {
             text-decoration: none;
-            color: #2c3e50;
+            color: #000;
         }
         
         .post-list a:hover {
-            color: #3498db;
+            text-decoration: underline;
+        }
+        
+        .post-summary {
+            margin-top: 0.5rem;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+         
+        .pinned-post {
+            margin-bottom: 2rem;
+        }
+        
+        .pinned-post .pin-badge {
+            display: none;
+        }
+        
+        .pinned-post h2 {
+            font-size: 1.1rem;
+            font-weight: normal;
+            margin: 0 0 0.3rem 0;
         }
         
         .footer {
-            border-top: 1px solid #eee;
-            padding-top: 1rem;
-            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
             color: #666;
-            font-size: 0.9rem;
+            font-size: 14px;
+            font-style: italic;
         }
         
          
@@ -119,17 +192,36 @@
         img {
             max-width: 100%;
             height: auto;
-            border-radius: 4px;
+        }
+        
+         
+        .single-post h1 {
+            font-size: 1.8rem;
+            font-weight: normal;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        
+        .single-post .post-meta {
+            margin-bottom: 2rem;
+        }
+        
+        .single-post p {
+            margin-bottom: 1.5rem;
         }
         
         @media (max-width: 600px) {
             body {
-                padding: 10px;
+                padding: 20px 15px;
+                font-size: 15px;
             }
             
-            .nav a {
-                display: block;
-                margin: 0.5rem 0;
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .nav a:not(:last-child)::after {
+                margin: 0 0.3rem;
             }
         }
     </style>
@@ -139,11 +231,9 @@
         <h1><a href="http://localhost:1313/" style="text-decoration: none; color: inherit;">Mike Stepanovic</a></h1>
         <nav class="nav">
             
-                <a href="/">Home</a>
+                <a href="/posts/">posts</a>
             
-                <a href="/posts/">Posts</a>
-            
-                <a href="/about/">About</a>
+                <a href="/about/">about</a>
             
         </nav>
     </header>
@@ -159,7 +249,7 @@
     </main>
     
     <footer class="footer">
-        <p>&copy; 2025 Mike Stepanovic. All rights reserved.</p>
+        <p>&copy; 2025 Mike Stepanovic</p>
     </footer>
 </body>
 </html>

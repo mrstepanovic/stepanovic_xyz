@@ -11,12 +11,9 @@
     <ul class="post-list">
         {{ range .Data.Pages }}
             <li>
-                <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-                <div class="post-meta">
-                    <time>{{ .Date.Format "January 2, 2006" }}</time>
-                </div>
+                <h3>• <a href="{{ .Permalink }}">{{ .Title }}</a></h3>
                 {{ if .Summary }}
-                    <p>{{ .Summary }}</p>
+                    <div class="post-summary">{{ .Summary }}</div>
                 {{ end }}
             </li>
         {{ end }}

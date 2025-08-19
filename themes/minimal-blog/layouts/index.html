@@ -1,46 +1,43 @@
 {{ define "main" }}
 <div class="home">
-    <!-- Pinned Posts Section -->
-    {{ $pinnedPosts := where .Site.RegularPages "Params.pinned" true }}
-    {{ if $pinnedPosts }}
-        {{ range $pinnedPosts }}
-            <article class="pinned-post">
-                <div class="pin-badge">📌 PINNED</div>
-                <h2><a href="{{ .Permalink }}" style="text-decoration: none; color: inherit;">{{ .Title }}</a></h2>
-                <div class="post-meta">
-                    <time>{{ .Date.Format "January 2, 2006" }}</time>
-                </div>
-                {{ if .Summary }}
-                    <p>{{ .Summary }}</p>
-                {{ end }}
-                <a href="{{ .Permalink }}" style="color: #3498db; font-weight: 500;">Read more →</a>
-            </article>
-        {{ end }}
-    {{ end }}
-
-    <!-- All Posts Section -->
-    {{ $regularPosts := where .Site.RegularPages "Params.pinned" "!=" true }}
-    {{ if $regularPosts }}
-        <h2>{{ if $pinnedPosts }}Latest Posts{{ else }}Posts{{ end }}</h2>
-        <ul class="post-list">
-            {{ range $regularPosts }}
-                <li>
-                    <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-                    <div class="post-meta">
-                        <time>{{ .Date.Format "January 2, 2006" }}</time>
-                    </div>
-                    {{ if .Summary }}
-                        <p>{{ .Summary }}</p>
-                    {{ end }}
-                </li>
-            {{ end }}
-        </ul>
-    {{ end }}
-    
-    {{ if not .Site.RegularPages }}
-        <h2>Welcome</h2>
+    <!-- Bio Section -->
+    <div class="bio">
         <p>{{ .Site.Params.description }}</p>
-        <p>No posts yet. <a href="/posts/">Check back soon!</a></p>
+    </div>
+
+    <!-- Social Links Section -->
+    <div class="social-links">
+        <h2>Find me</h2>
+        <ul>
+            <li>• Twitter: <em><a href="https://twitter.com/{{ .Site.Params.twitter | default "yourusername" }}">@{{ .Site.Params.twitter | default "yourusername" }}</a></em></li>
+            <li>• Email: <em><a href="mailto:{{ .Site.Params.email | default "your@email.com" }}">{{ .Site.Params.email | default "your@email.com" }}</a></em></li>
+            <li>• <a href="/posts/">Posts</a></li>
+            <li>• <a href="/about/">About</a></li>
+        </ul>
+    </div>
+
+    <!-- Recent Posts Section -->
+    {{ $recentPosts := first 5 .Site.RegularPages }}
+    {{ if $recentPosts }}
+        <div class="posts-section">
+            <h2>Recent Posts</h2>
+            <ul class="post-list">
+                {{ range $recentPosts }}
+                    <li>
+                        <h3>• <a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                        {{ if .Summary }}
+                            <div class="post-summary">{{ .Summary }}</div>
+                        {{ end }}
+                    </li>
+                {{ end }}
+            </ul>
+            <p><a href="/posts/">Browse all posts →</a></p>
+        </div>
+    {{ else }}
+        <div class="posts-section">
+            <h2>Recent Posts</h2>
+            <p>No posts yet. Check back soon!</p>
+        </div>
     {{ end }}
 </div>
 {{ end }}
