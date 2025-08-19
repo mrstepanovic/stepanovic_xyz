@@ -1,31 +1,20 @@
 {{ define "main" }}
+<h1>Posts tagged with "{{ .Title }}"</h1>
+
 {{ if .Content }}
     <div class="intro">
         {{ .Content }}
     </div>
 {{ end }}
 
-<!-- Tag Cloud for Posts List -->
-{{ $allTags := slice }}
-{{ range .Data.Pages }}
-    {{ if .Params.tags }}
-        {{ range .Params.tags }}
-            {{ $allTags = $allTags | append . }}
-        {{ end }}
-    {{ end }}
-{{ end }}
-{{ $uniqueTags := $allTags | uniq | sort }}
-{{ if $uniqueTags }}
-    <div class="tags-container cloud-tags">
-        {{ range $uniqueTags }}
-            <span class="tag-pill clickable" data-tag="{{ . }}">{{ . }}</span>
-        {{ end }}
-    </div>
-{{ end }}
+<!-- Show the current tag as an active pill -->
+<div class="tags-container post-tags">
+    <span class="tag-pill">{{ .Title }}</span>
+</div>
 
-{{ if .Data.Pages }}
+{{ if .Pages }}
     <ul class="post-list-minimal">
-        {{ range .Data.Pages.ByDate.Reverse }}
+        {{ range .Pages.ByDate.Reverse }}
             <li data-tags="{{ if .Params.tags }}{{ delimit .Params.tags "," }}{{ end }}">
                 <a href="{{ .Permalink }}" class="post-row-link">
                     <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
@@ -41,5 +30,9 @@
             </li>
         {{ end }}
     </ul>
+{{ else }}
+    <p>No posts found with this tag.</p>
 {{ end }}
+
+<p><a href="/tags/">← View all tags</a></p>
 {{ end }}

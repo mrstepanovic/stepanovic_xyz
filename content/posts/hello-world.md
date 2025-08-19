@@ -4,6 +4,7 @@ date: 2025-01-10T10:00:00-08:00
 draft: false
 pinned: true
 description: "Welcome post introducing my Hugo blog with custom features and styling"
+tags: ["hugo", "blog", "web development", "markdown"]
 ---
 
 Welcome to my Hugo blog! This is my first post. I'm excited to share my thoughts and experiences using [Hugo](https://gohugo.io/), an amazing static site generator.

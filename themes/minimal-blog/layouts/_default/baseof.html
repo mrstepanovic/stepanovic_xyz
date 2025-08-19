@@ -552,6 +552,123 @@
             counter-reset: footnote-counter;
         }
         
+        /* Tag Pills Styling */
+        .tags-container {
+            margin: 1.5rem 0;
+            line-height: 1.4;
+        }
+        
+        .tags-container.post-tags {
+            margin: 1rem 0 2rem 0;
+            font-size: 14px;
+        }
+        
+        .tags-container.cloud-tags {
+            margin: 2rem 0 3rem 0;
+            text-align: left;
+        }
+        
+        .tag-pill {
+            display: inline-block;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            color: #495057;
+            padding: 0.25rem 0.75rem;
+            margin: 0.125rem 0.25rem 0.125rem 0;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .tag-pill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(270deg, 
+                rgba(139, 92, 246, 0.12) 0%, 
+                rgba(217, 70, 239, 0.12) 25%,
+                rgba(34, 197, 94, 0.12) 50%,
+                rgba(59, 130, 246, 0.12) 75%,
+                rgba(139, 92, 246, 0.12) 100%);
+            background-size: 400% 400%;
+            opacity: 0;
+            transition: opacity 0.2s ease-in-out;
+            border-radius: 50px;
+        }
+        
+        .tag-pill:hover {
+            color: #000;
+            border-color: #8b5cf6;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+        
+        .tag-pill:hover::before {
+            opacity: 1;
+            animation: colorWheel 15s ease-in-out infinite;
+        }
+        
+        .tag-pill.clickable {
+            cursor: pointer;
+        }
+        
+        .tag-pill.clickable:hover {
+            background: linear-gradient(270deg, 
+                #8b5cf6, #d946ef, #22c55e, #3b82f6, #8b5cf6);
+            background-size: 400% 400%;
+            color: #fff;
+            border-color: transparent;
+            animation: colorWheel 15s ease-in-out infinite;
+        }
+        
+        /* Tag filtering visual indicators */
+        .post-list-minimal li {
+            transition: all 0.3s ease;
+        }
+        
+        .post-list-minimal li.filtered {
+            opacity: 0.3;
+            transform: translateX(-10px);
+        }
+        
+        .post-list-minimal li.highlighted {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .post-list-minimal li.highlighted::before {
+            opacity: 0.6 !important;
+            animation: colorWheel 15s ease-in-out infinite;
+        }
+        
+        .filter-indicator {
+            position: absolute;
+            left: -20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 60%;
+            background: linear-gradient(270deg, 
+                #8b5cf6, #d946ef, #22c55e, #3b82f6, #8b5cf6);
+            background-size: 400% 400%;
+            animation: colorWheel 15s ease-in-out infinite;
+            border-radius: 2px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .post-list-minimal li.highlighted .filter-indicator {
+            opacity: 1;
+        }
+        
         @media (max-width: 600px) {
             body {
                 padding: 20px 15px;
@@ -604,8 +721,9 @@
         <div class="header-content">
             <h1><a href="{{ .Site.BaseURL }}" class="site-title">stepanovic.xyz</a></h1>
             <nav class="nav">
-                <a href="/about/">about</a>
-                <a href="/posts/">posts</a>
+                {{ range .Site.Menus.main }}
+                    <a href="{{ .URL }}">{{ .Name }}</a>
+                {{ end }}
             </nav>
         </div>
     </header>
@@ -719,6 +837,86 @@
                 
                 footnoteSection.appendChild(list);
                 mainContainer.appendChild(footnoteSection);
+            }
+        });
+        
+        // Tag filtering functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const path = window.location.pathname;
+            const isHomePage = path === '/' || path === '/index.html';
+            const isPostsList = path === '/posts/' || path === '/posts/index.html';
+            
+            if (isHomePage || isPostsList) {
+                let currentFilter = '';
+                
+                // Add click handlers to clickable tags
+                document.querySelectorAll('.tag-pill.clickable').forEach(tag => {
+                    tag.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const tagName = this.dataset.tag;
+                        
+                        if (currentFilter === tagName) {
+                            // Clear filter
+                            currentFilter = '';
+                            clearFilter();
+                        } else {
+                            // Apply filter
+                            currentFilter = tagName;
+                            filterByTag(tagName);
+                        }
+                        
+                        // Update tag appearance
+                        updateTagAppearance(tagName);
+                    });
+                });
+                
+                function filterByTag(tagName) {
+                    const posts = document.querySelectorAll('.post-list-minimal li');
+                    posts.forEach(post => {
+                        const postTags = post.dataset.tags ? post.dataset.tags.split(',') : [];
+                        const hasTag = postTags.includes(tagName);
+                        
+                        // Add filter indicator if it doesn't exist
+                        if (!post.querySelector('.filter-indicator')) {
+                            const indicator = document.createElement('div');
+                            indicator.className = 'filter-indicator';
+                            post.style.position = 'relative';
+                            post.appendChild(indicator);
+                        }
+                        
+                        if (hasTag) {
+                            post.classList.remove('filtered');
+                            post.classList.add('highlighted');
+                        } else {
+                            post.classList.add('filtered');
+                            post.classList.remove('highlighted');
+                        }
+                    });
+                }
+                
+                function clearFilter() {
+                    const posts = document.querySelectorAll('.post-list-minimal li');
+                    posts.forEach(post => {
+                        post.classList.remove('filtered', 'highlighted');
+                    });
+                }
+                
+                function updateTagAppearance(activeTag) {
+                    document.querySelectorAll('.tag-pill.clickable').forEach(tag => {
+                        if (tag.dataset.tag === activeTag && currentFilter === activeTag) {
+                            tag.style.background = 'linear-gradient(270deg, #8b5cf6, #d946ef, #22c55e, #3b82f6, #8b5cf6)';
+                            tag.style.backgroundSize = '400% 400%';
+                            tag.style.color = '#fff';
+                            tag.style.borderColor = 'transparent';
+                            tag.style.animation = 'colorWheel 15s ease-in-out infinite';
+                        } else {
+                            tag.style.background = '';
+                            tag.style.color = '';
+                            tag.style.borderColor = '';
+                            tag.style.animation = '';
+                        }
+                    });
+                }
             }
         });
     </script>

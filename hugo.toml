@@ -8,6 +8,9 @@ theme = 'minimal-blog'
   description = 'Welcome to my personal blog! I write about technology, ideas, and experiences that interest me.'
   email = 'mike@stepanovic.xyz'
   twitter = 'mikestepanovic'
+
+[taxonomies]
+  tag = 'tags'
   
 [markup]
   [markup.goldmark]
@@ -16,7 +19,7 @@ theme = 'minimal-blog'
 
 [menu]
   [[menu.main]]
-    name = 'posts'
+    name = 'ideas'
     url = '/posts/'
     weight = 10
   [[menu.main]]
