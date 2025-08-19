@@ -2,24 +2,26 @@
 <div class="home">
     <!-- Descriptive body -->
     <div class="intro">
-        <p>{{ .Site.Params.description }}</p>
+        {{ .Content }}
     </div>
 
     <!-- Minimalist post list -->
     {{ $posts := where .Site.RegularPages "Type" "posts" }}
     {{ if $posts }}
         <ul class="post-list-minimal">
-            {{ range $posts }}
+            {{ range $posts.ByDate.Reverse }}
                 <li>
-                    <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
-                    <span>
-                        <a href="{{ .Permalink }}" class="post-title-link">{{ .Title }}</a>
-                        {{ if .Params.description }}
-                            <span class="post-description">{{ .Params.description }}</span>
-                        {{ else if .Summary }}
-                            <span class="post-description">{{ truncate 100 .Summary }}</span>
-                        {{ end }}
-                    </span>
+                    <a href="{{ .Permalink }}" class="post-row-link">
+                        <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+                        <span>
+                            <span class="post-title">{{ .Title }}</span>
+                            {{ if .Params.description }}
+                                <span class="post-description">{{ .Params.description }}</span>
+                            {{ else if .Summary }}
+                                <span class="post-description">{{ truncate 100 .Summary }}</span>
+                            {{ end }}
+                        </span>
+                    </a>
                 </li>
             {{ end }}
         </ul>
