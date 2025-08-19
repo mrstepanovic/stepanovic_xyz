@@ -615,6 +615,20 @@
     </main>
     
     <script>
+        // Apply compact spacing to homepage and posts list (not single posts or about)
+        document.addEventListener('DOMContentLoaded', function() {
+            const path = window.location.pathname;
+            const isHomePage = path === '/' || path === '/index.html';
+            const isPostsList = path === '/posts/' || path === '/posts/index.html';
+            
+            if (isHomePage || isPostsList) {
+                const contentElement = document.querySelector('main.content');
+                if (contentElement) {
+                    contentElement.style.marginTop = '-1.5rem';
+                }
+            }
+        });
+        
         // Generate Chicago-style footnotes
         document.addEventListener('DOMContentLoaded', function() {
             // Generate footnotes on individual post pages and about page
