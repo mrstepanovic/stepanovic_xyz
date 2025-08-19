@@ -564,7 +564,7 @@
         }
         
         .tags-container.cloud-tags {
-            margin: 2rem 0 3rem 0;
+            margin: 1.5rem 0 2rem 0;
             text-align: left;
         }
         
@@ -573,8 +573,8 @@
             background: #f8f9fa;
             border: 1px solid #e9ecef;
             color: #495057;
-            padding: 0.25rem 0.75rem;
-            margin: 0.125rem 0.25rem 0.125rem 0;
+            padding: 0.2rem 0.6rem;
+            margin: 0.1rem 0.2rem 0.1rem 0;
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 500;
@@ -733,13 +733,13 @@
     </main>
     
     <script>
-        // Apply compact spacing to homepage and posts list (not single posts or about)
+        // Apply compact spacing to homepage and ideas list (not single posts or bio)
         document.addEventListener('DOMContentLoaded', function() {
             const path = window.location.pathname;
-            const isHomePage = path === '/' || path === '/index.html';
-            const isPostsList = path === '/posts/' || path === '/posts/index.html';
+            const isHomePage = path === '/' || path === '/index.html' || path === '';
+            const isIdeasList = path === '/ideas/' || path === '/ideas/index.html' || path.startsWith('/ideas') && path.split('/').length <= 3;
             
-            if (isHomePage || isPostsList) {
+            if (isHomePage || isIdeasList) {
                 const contentElement = document.querySelector('main.content');
                 if (contentElement) {
                     contentElement.style.marginTop = '-1.5rem';
@@ -749,17 +749,17 @@
         
         // Generate Chicago-style footnotes
         document.addEventListener('DOMContentLoaded', function() {
-            // Generate footnotes on individual post pages and about page
+            // Generate footnotes on individual post pages and bio page
             const path = window.location.pathname;
-            const isPostPage = path.startsWith('/posts/') && path !== '/posts/' && path !== '/posts/index.html';
-            const isAboutPage = path === '/about/' || path === '/about/index.html' || path === '/about';
+            const isPostPage = path.startsWith('/ideas/') && path !== '/ideas/' && path !== '/ideas/index.html';
+            const isBioPage = path === '/bio/' || path === '/bio/index.html' || path === '/bio';
             
-            if (!isPostPage && !isAboutPage) {
+            if (!isPostPage && !isBioPage) {
                 return;
             }
             
-            // Add CSS for about page superscripts if needed
-            if (isAboutPage) {
+            // Add CSS for bio page superscripts if needed
+            if (isBioPage) {
                 const style = document.createElement('style');
                 style.textContent = `
                     .content {
@@ -844,9 +844,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             const path = window.location.pathname;
             const isHomePage = path === '/' || path === '/index.html';
-            const isPostsList = path === '/posts/' || path === '/posts/index.html';
+            const isIdeasList = path === '/ideas/' || path === '/ideas/index.html';
             
-            if (isHomePage || isPostsList) {
+            if (isHomePage || isIdeasList) {
                 let currentFilter = '';
                 
                 // Add click handlers to clickable tags

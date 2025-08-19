@@ -1,11 +1,12 @@
 {{ define "main" }}
-{{ if .Content }}
-    <div class="intro">
-        {{ .Content }}
-    </div>
-{{ end }}
+<div class="home">
+    {{ if .Content }}
+        <div class="intro">
+            {{ .Content }}
+        </div>
+    {{ end }}
 
-<!-- Tag Cloud for Posts List -->
+    <!-- Tag Cloud for Posts List -->
 {{ $allTags := slice }}
 {{ range .Data.Pages }}
     {{ if .Params.tags }}
@@ -42,4 +43,5 @@
         {{ end }}
     </ul>
 {{ end }}
+</div>
 {{ end }}

@@ -20,9 +20,9 @@ theme = 'minimal-blog'
 [menu]
   [[menu.main]]
     name = 'ideas'
-    url = '/posts/'
+    url = '/ideas/'
     weight = 10
   [[menu.main]]
-    name = 'about'
-    url = '/about/'
+    name = 'bio'
+    url = '/bio/'
     weight = 20

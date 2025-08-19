@@ -1,13 +1,15 @@
 {{ define "main" }}
 <div class="home">
     <!-- Descriptive body -->
-    <div class="intro">
-        {{ .Content }}
-    </div>
+    {{ if .Content }}
+        <div class="intro">
+            {{ .Content }}
+        </div>
+    {{ end }}
 
     <!-- Tag Cloud -->
     {{ $allTags := slice }}
-    {{ range where .Site.RegularPages "Type" "posts" }}
+    {{ range where .Site.RegularPages "Type" "ideas" }}
         {{ if .Params.tags }}
             {{ range .Params.tags }}
                 {{ $allTags = $allTags | append . }}
@@ -24,7 +26,7 @@
     {{ end }}
 
     <!-- Minimalist post list -->
-    {{ $posts := where .Site.RegularPages "Type" "posts" }}
+    {{ $posts := where .Site.RegularPages "Type" "ideas" }}
     {{ if $posts }}
         <ul class="post-list-minimal">
             {{ range $posts.ByDate.Reverse }}

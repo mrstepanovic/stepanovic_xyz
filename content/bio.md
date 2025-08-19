@@ -1,5 +1,5 @@
 ---
-title: "About"
+title: "Bio"
 ---
 
 Hi! I'm Mike Stepanovic. 
@@ -10,7 +10,7 @@ When I'm not writing, you can find me working on various projects or exploring n
 
 You can use this  feature for additional context in your posts.
 
-### More about the site
+### The Site
 
 I built this site with [Hugo](https://gohugo.io/) and [Claude Sonnet 4](https://www.anthropic.com/claude/sonnet) in a couple afternoons. You are reading the beautiful [Reforma](https://www.pampatype.com/reforma) typeface – a Creative Commons font originally designed for the Universidad Nacional de Córdoba in Argentina. *¡Vamos!*
 
